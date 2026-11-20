@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import type { EntradaTaller } from '../type/control-it';
 import { BotonConfirmar } from './BotonConfirmar';
+import { ESTILOS_PRIORIDAD } from '../utils/PrioridadEstilos';
 
 interface TarjetaEntradaProps {
   entrada: EntradaTaller;
@@ -25,14 +26,17 @@ export function TarjetaEntrada({
   onEliminar,
 }: TarjetaEntradaProps) {
   const esFinalizada = entrada.estado === 'Finalizada';
+  const estiloPrioridad = ESTILOS_PRIORIDAD[entrada.prioridad];
 
   return (
-    <div className="bg-slate-900 p-4 rounded-lg border border-slate-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow hover:border-slate-600 transition">
+    <div
+      className={`bg-slate-900 p-4 rounded-lg border border-slate-700 ${estiloPrioridad.borde} flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow hover:border-slate-600 transition`}
+    >
       <div>
         <div className="flex items-center gap-2">
           <span className="text-blue-400 font-mono font-bold text-sm">{entrada.id}</span>
-          <span className="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
-            Prioridad: {entrada.prioridad}
+          <span className={`text-xs px-2 py-0.5 rounded ${estiloPrioridad.badge}`}>
+            Prioridad: {estiloPrioridad.etiqueta}
           </span>
         </div>
 

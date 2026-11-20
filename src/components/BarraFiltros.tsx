@@ -1,7 +1,9 @@
 import { Search, X } from 'lucide-react';
 import { TECNICOS_TALLER } from '../data/mockData';
+import type { Prioridad } from '../type/control-it';
 
 export type FiltroEstado = 'Todos' | 'En proceso' | 'Finalizada';
+export type FiltroPrioridad = 'Todas' | Prioridad;
 
 interface BarraFiltrosProps {
   totalFiltrados: number;
@@ -11,9 +13,12 @@ interface BarraFiltrosProps {
   onFiltroChange: (filtro: FiltroEstado) => void;
   filtroTecnico: string;
   onFiltroTecnicoChange: (tecnico: string) => void;
+  filtroPrioridad: FiltroPrioridad;
+  onFiltroPrioridadChange: (prioridad: FiltroPrioridad) => void;
 }
 
 const FILTROS: FiltroEstado[] = ['Todos', 'En proceso', 'Finalizada'];
+const PRIORIDADES: Prioridad[] = ['Baja', 'Media', 'Alta', 'Urgente'];
 
 export function BarraFiltros({
   totalFiltrados,
@@ -23,6 +28,8 @@ export function BarraFiltros({
   onFiltroChange,
   filtroTecnico,
   onFiltroTecnicoChange,
+  filtroPrioridad,
+  onFiltroPrioridadChange,
 }: BarraFiltrosProps) {
   return (
     <div className="flex flex-col xl:flex-row justify-between items-stretch xl:items-center gap-4 mb-6 pb-4 border-b border-slate-700">
@@ -64,6 +71,20 @@ export function BarraFiltros({
           {TECNICOS_TALLER.map((tecnico) => (
             <option key={tecnico} value={tecnico}>
               {tecnico}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={filtroPrioridad}
+          onChange={(e) => onFiltroPrioridadChange(e.target.value as FiltroPrioridad)}
+          aria-label="Filtrar por prioridad"
+          className="bg-slate-900 border border-slate-700 focus:border-blue-500 focus:outline-none rounded-lg px-3 py-1.5 text-sm text-slate-200 cursor-pointer"
+        >
+          <option value="Todas">Todas las prioridades</option>
+          {PRIORIDADES.map((prioridad) => (
+            <option key={prioridad} value={prioridad}>
+              {prioridad}
             </option>
           ))}
         </select>

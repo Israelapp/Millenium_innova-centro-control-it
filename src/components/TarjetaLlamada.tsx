@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import type { LlamadaTaller } from '../hook/useLLamada';
 import { BotonConfirmar } from './BotonConfirmar';
+import { ESTILOS_PRIORIDAD } from '../utils/PrioridadEstilos';
 
 interface TarjetaLlamadaProps {
   llamada: LlamadaTaller;
@@ -25,14 +26,17 @@ export function TarjetaLlamada({
   onEliminar,
 }: TarjetaLlamadaProps) {
   const esFinalizada = llamada.estado === 'Finalizada';
+  const estiloPrioridad = ESTILOS_PRIORIDAD[llamada.prioridad];
 
   return (
-    <div className="bg-slate-900 p-4 rounded-lg border border-slate-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow hover:border-slate-600 transition">
+    <div
+      className={`bg-slate-900 p-4 rounded-lg border border-slate-700 ${estiloPrioridad.borde} flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow hover:border-slate-600 transition`}
+    >
       <div className="space-y-1">
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-indigo-400 font-mono font-bold text-sm">{llamada.id}</span>
-          <span className="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
-            Prioridad: {llamada.prioridad}
+          <span className={`text-xs px-2 py-0.5 rounded ${estiloPrioridad.badge}`}>
+            Prioridad: {estiloPrioridad.etiqueta}
           </span>
           <span className="text-xs text-slate-500">{llamada.fecha}</span>
         </div>
