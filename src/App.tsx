@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PhoneCall, Laptop } from 'lucide-react';
-import { CarruselLateralVertical } from './components/CarruselLateral';
+import { CarruselLateral } from './components/CarruselLateral';
 import { CabeceraApp } from './components/CabeceraApp';
 import { ModalNuevaEntrada } from './components/ModalNuevaEntrada';
 import { ModalNuevaLlamada } from './components/ModalNuevaLlamada';
@@ -104,10 +104,10 @@ function App() {
       />
 
       {/* Franja vertical izquierda de arriba hasta el final con logo y carrusel de técnicos */}
-      <CarruselLateralVertical />
+      <CarruselLateral />
 
-      {/* Contenedor desplazado a la derecha de la franja lateral */}
-      <div className="pl-24 sm:pl-28 pr-4 sm:pr-6 py-6 relative z-10">
+      {/* Contenedor desplazado exactamente el ancho de la franja lateral */}
+      <div className="pl-28 sm:pl-36 pr-4 sm:pr-6 py-6 relative z-10">
         <div className="max-w-5xl mx-auto">
           <CabeceraApp
             esVistaLlamadas={esVistaLlamadas}
